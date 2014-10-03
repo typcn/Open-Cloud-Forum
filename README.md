@@ -3,7 +3,9 @@ Open-Cloud-Forum
 
 A very simple static forum system by typcn.
 
-based on AVOS Cloud.
+based on AVOS Cloud. 
+
+Not Completed.
 
 Usage
 ================
