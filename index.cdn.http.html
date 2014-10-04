@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>OpenCloudForum</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="http://cdn.eqoe.cn/js/jquery%2Bjquery.dropotron%2Bskel%2Bskel%2Blayers.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body class="right-sidebar">
+
+		<!-- Header -->
+			<div id="header-wrapper">
+				<div id="header">
+					
+					<!-- Logo -->
+						<h1><a href="#">OpenCloudForum</a></h1>				
+				</div>
+			</div>
+		
+		<!-- Main -->
+			<div id="main-wrapper">
+				<div class="container">
+					<div class="row">
+						<div id="main-content" class="8u">
+								<article id="loading" class="box post">
+									<header>
+										<h2>载入中...</h2>
+									</header>
+									<p>
+										系统正在尝试连接至云端。如果等待时间过长，请检查您的互联网连接并确认已启用 Javascript
+									</p>
+								</article>
+
+						</div>
+
+						<div class="4u">
+						
+							<!-- Sidebar -->
+								<section id="user" class="box">
+									<header>
+										<h3 id="uname">载入中...</h3>
+									</header>
+									<footer>
+										<a id="person" href="javascript:void(0);" class="button alt">个人</a>
+										<a id="setting" href="javascript:void(0);" class="button alt">设置</a>
+										<a id="logout" href="javascript:void(0);" class="button alt">登出</a> 
+									</footer>
+								</section>
+								<section id="login" class="box" style="display:none;">
+									<header>
+										<h3>用户中心</h3>
+									</header>
+									<form>
+										<input id="un" type="text" placeholder="用户名">
+										<input id="pw" type="password" placeholder="密码">
+									</form>
+									<footer>
+										<a id="signin" href="javascript:void(0);" class="button alt">登陆</a>
+										<a id="reg" data-formext="0" href="javascript:void(0);" class="button alt">注册</a> 
+									</footer>
+								</section>
+								<section id="stat" class="box">
+									<header>
+										<h3>运行统计</h3>
+									</header>
+									<ul class="divided">
+										<li>用户数:<span id="unum">0</span></li>
+										<li>主题数:<span id="tnum">0</span></li>
+										<li>回复数:<span id="rnum">0</span></li>
+									</ul>
+								</section>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer-wrapper">
+				<section id="footer" class="container">					
+					<div class="row">
+						<div class="12u">
+						
+							<!-- Copyright -->
+								<div id="copyright">
+									<ul class="links">
+										<li>&copy; Your Name. All rights reserved.</li>
+										<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										<li>Developer: <a href="http://blog.eqoe.cn">TYPCN</a></li>
+									</ul>
+								</div>
+
+						</div>
+					</div>
+				</section>
+			</div>
+	
+	<script src="js/ocf-typcn.js"></script>
+	
+	<div class="loading-icon"><img src="data:image/gif;base64,R0lGODlhEAAQAPQAAP///2FhYfv7+729vdbW1q2trbe3t/Dw8OHh4bKystHR0czMzPX19dzc3Ovr68LCwsfHxwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/h1CdWlsdCB3aXRoIEdJRiBNb3ZpZSBHZWFyIDQuMAAh/hVNYWRlIGJ5IEFqYXhMb2FkLmluZm8AIfkECQoAAAAsAAAAABAAEAAABVAgII5kaZ6lMBRsISqEYKqtmBTGkRo1gPAG2YiAW40EPAJphVCREIUBiYWijqwpLIBJWviiJGLwukiSkDiEqDUmHXiJNWsgPBMU8nkdxe+PQgAh+QQJCgAAACwAAAAAEAAQAAAFaCAgikfSjGgqGsXgqKhAJEV9wMDB1sUCCIyUgGVoFBIMwcAgQBEKTMCA8GNRR4MCQrTltlA1mCA8qjVVZFG2K+givqNnlDCoFq6ioY9BaxDPI0EACzxQNzAHPAkEgDAOWQY4Kg0JhyMhACH5BAkKAAAALAAAAAAQABAAAAVgICCOI/OQKNoUSCoKxFAUCS2khzHvM4EKOkPLMUu0SISC4QZILpgk2bF5AAgQvtHMBdhqCy6BV0RA3A5ZAKIwSAkWhSwwjkLUCo5rEErm7QxVPzV3AwR8JGsNXCkPDIshACH5BAkKAAAALAAAAAAQABAAAAVSICCOZGmegCCUAjEUxUCog0MeBqwXxmuLgpwBIULkYD8AgbcCvpAjRYI4ekJRWIBju22idgsSIqEg6cKjYIFghg1VRqYZctwZDqVw6ynzZv+AIQAh+QQJCgAAACwAAAAAEAAQAAAFYCAgjmRpnqhADEUxEMLJGG1dGMe5GEiM0IbYKAcQigQ0AiDnKCwYpkYhYUgAWFOYCIFtNaS1AWJESLQGAKq5YWIsCo4lgHAzFmPEI7An+A3sIgc0NjdQJipYL4AojI0kIQAh+QQJCgAAACwAAAAAEAAQAAAFXyAgjmRpnqhIFMVACKZANADCssZBIkmRCLCaoWAIPm6FBUkwJIgYjR5LN7INSCwHwYktdIMqgoNFGhQQpMMt0WCoiGDAAvkQMYkIGLCXQI8OQzdoCC8xBGYFXCmLjCYhADsAAAAAAAAAAAA="></div>
+	</body>
+</html>
