@@ -403,5 +403,6 @@ function html_encode(str)
 	s = s.replace(/<style[^>]*>(.|\n)*?<\/style>/ig,"");
 	s = s.replace(/\'/g, "&#39");
 	s = s.replace(/\"/g, "&quot;");
+	s = s.replace(/\n/g, "<br>");
 	return s;
 } 
