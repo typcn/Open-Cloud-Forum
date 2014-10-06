@@ -153,6 +153,9 @@ Ocf.PageLoader = {
 		this.push("#/setting", "设置");
 	},
 	loadPost:function(aid){
+		var converter = new Markdown.Converter(),
+		/* Alias the conversion method to make it easier to swap libraries in the future. */
+		markdownToHtml = converter.makeHtml;
 		$(".loading-icon").show();
 		var topic = AV.Object.extend("topic");
 		var post = new AV.Query(topic);
@@ -165,7 +168,8 @@ Ocf.PageLoader = {
 						data= data.replace(/\{UserId\}/gi, result.get('user').id);
 						data = data.replace(/\{ObjId\}/gi, result.id);
 						data = data.replace(/\{title\}/gi, result.get('title'));
-						data = data.replace(/\{Content\}/gi, html_encode(result.get('body')));
+						var cont_enc = html_encode(result.get('body'));
+						data = data.replace(/\{Content\}/gi, markdownToHtml(cont_enc));
 						data = data.replace(/\{date\}/gi, result.createdAt.format('yyyy-MM-dd hh:mm:ss'));
 						$( "#main-content" ).empty();
 						$("#main-content").append(data);
@@ -195,7 +199,8 @@ Ocf.PageLoader = {
 								postSub = postSub.replace(/\{UserId\}/gi, object.get('user').id);
 								postSub = postSub.replace(/\{ObjId\}/gi, object.id);
 								postSub = postSub.replace(/\{date\}/gi, object.createdAt.format('yyyy-MM-dd hh:mm:ss'));
-								postSub = postSub.replace(/\{Content\}/gi, html_encode(object.get('content')));
+								var cont_enc = html_encode(object.get('content'));
+								postSub = postSub.replace(/\{Content\}/gi, markdownToHtml(cont_enc));
 								$("#main-content").append(postSub);
 							  }
 							//place reply form
@@ -231,7 +236,7 @@ Ocf.PageLoader = {
 		query.find({
 		  success: function(results) {
 			$( "#main-content" ).empty();
-
+	
 			$.ajax({ 
 			  type : "GET", 
 			  url : "ajaxContents/list.html", 
@@ -258,6 +263,34 @@ Ocf.PageLoader = {
 				$("#postnew").click(function(){
 					Ocf.Post.create($("#ptitle").val(),$("#pcontent").val());
 				});
+				
+				$("#prev").click(function(){
+						var re = /(http|https):\/\/[a-z.]*\/\#\/([a-z]*)\/(.*)/g; 
+						var m = re.exec(window.location.href);
+						if(!m){  
+							Ocf.PageLoader.push("#/page/1","第1页");
+							return;
+						};
+						if(m[2] == "page"){
+							pagenum = parseInt(m[3]) - 1;
+							Ocf.PageLoader.push("#/page/" + pagenum,"第" + pagenum + "页");
+							onNavigate();
+						}
+				});
+				$("#next").click(function(){
+						var re = /(http|https):\/\/[a-z.]*\/\#\/([a-z]*)\/(.*)/g; 
+						var m = re.exec(window.location.href);
+						if(!m){  
+							Ocf.PageLoader.push("#/page/2","第2页");
+							onNavigate();
+							return;
+						};
+						if(m[2] == "page"){
+							pagenum = parseInt(m[3]) + 1;
+							Ocf.PageLoader.push("#/page/" + pagenum,"第" + pagenum + "页");
+							onNavigate();
+						}
+				});
 			});
 			
 		  },
@@ -271,7 +304,7 @@ Ocf.PageLoader = {
 
 Ocf.Post = {
 	create:function(title,content){
-
+		
 		var topic = AV.Object.extend("topic");
 		var post = new topic();
 		post.set("title",title);
@@ -282,6 +315,7 @@ Ocf.Post = {
 		post.setACL(pACL);
 		post.save(null, {
 		  success: function(post) {
+			$('html,body').animate({scrollTop:0},'slow');
 			console.log("Post Created");
 			onNavigate();
 		  },
@@ -308,6 +342,7 @@ Ocf.Post = {
 		myreply.save(null, {
 		  success: function(post) {
 			console.log("Reply Created");
+			$('html,body').animate({scrollTop:0},'slow');
 			onNavigate()
 		  },
 		  error: function(obj, error) {
@@ -353,18 +388,20 @@ function onNavigate(){
 	if(m[2] == "topic"){
 		Ocf.PageLoader.loadPost(m[3]);
 	}
+	if(m[2] == "page"){
+		$('html,body').animate({scrollTop:0},'slow');
+		pagenum = m[3] - 1;
+		Ocf.PageLoader.fetchList(pagenum*10);
+	}
 }
 
 function html_encode(str)   
 {   
-  var s = "";   
-  if (str.length == 0) return "";   
-  s = str.replace(/&/g, "&gt;");   
-  s = s.replace(/</g, "&lt;");   
-  s = s.replace(/>/g, "&gt;");   
-  s = s.replace(/ /g, "&nbsp;");   
-  s = s.replace(/\'/g, "&#39;");   
-  s = s.replace(/\"/g, "&quot;");   
-  s = s.replace(/\n/g, "<br>");   
-  return s;   
+	var s = "";
+	if(str.length == 0) return "";
+	s = str.replace(/<script[^>]*>(.|\n)*?<\/script>/ig,"不安全的内容已被过滤");
+	s = s.replace(/<style[^>]*>(.|\n)*?<\/style>/ig,"");
+	s = s.replace(/\'/g, "&#39");
+	s = s.replace(/\"/g, "&quot;");
+	return s;
 } 
