@@ -239,7 +239,7 @@ Ocf.PageLoader = {
 	
 			$.ajax({ 
 			  type : "GET", 
-			  url : "ajaxContents/list.html", 
+			  url : "ajaxContents/list.html?v=20141007", 
 			  async : false, 
 			  success : function(data){ 
 				for (var i = 0; i < results.length; i++) {
@@ -257,7 +257,7 @@ Ocf.PageLoader = {
 			Ocf.Post.loadListvar();
 			
 			//place post forms
-			$.get( "ajaxContents/post.html", function(data) {
+			$.get( "ajaxContents/post.html?ver=20141006", function(data) {
 				$("#main-content").append(data);
 				//bind
 				$("#postnew").click(function(){
@@ -268,12 +268,13 @@ Ocf.PageLoader = {
 						var re = /(http|https):\/\/[a-z.]*\/\#\/([a-z]*)\/(.*)/g; 
 						var m = re.exec(window.location.href);
 						if(!m){  
-							Ocf.PageLoader.push("#/page/1","第1页");
+							Ocf.PageLoader.push("#!/page/1","第1页");
+							onNavigate();
 							return;
 						};
 						if(m[2] == "page"){
 							pagenum = parseInt(m[3]) - 1;
-							Ocf.PageLoader.push("#/page/" + pagenum,"第" + pagenum + "页");
+							Ocf.PageLoader.push("#!/page/" + pagenum,"第" + pagenum + "页");
 							onNavigate();
 						}
 				});
@@ -281,13 +282,13 @@ Ocf.PageLoader = {
 						var re = /(http|https):\/\/[a-z.]*\/\#\/([a-z]*)\/(.*)/g; 
 						var m = re.exec(window.location.href);
 						if(!m){  
-							Ocf.PageLoader.push("#/page/2","第2页");
+							Ocf.PageLoader.push("#!/page/2","第2页");
 							onNavigate();
 							return;
 						};
 						if(m[2] == "page"){
 							pagenum = parseInt(m[3]) + 1;
-							Ocf.PageLoader.push("#/page/" + pagenum,"第" + pagenum + "页");
+							Ocf.PageLoader.push("#!/page/" + pagenum,"第" + pagenum + "页");
 							onNavigate();
 						}
 				});
@@ -379,7 +380,7 @@ window.onpopstate = onNavigate;
 
 function onNavigate(){
 	console.log("PopState: " + window.location.href);
-	var re = /(http|https):\/\/[a-z.]*\/\#\/([a-z]*)\/(.*)/g; 
+	var re = /(http|https):\/\/[a-z.]*\/\#!\/([a-z]*)\/(.*)/g; 
 	var m = re.exec(window.location.href);
 	if(!m){  
 		Ocf.loadMain();
