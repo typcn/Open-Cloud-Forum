@@ -265,7 +265,7 @@ Ocf.PageLoader = {
 				});
 				
 				$("#prev").click(function(){
-						var re = /(http|https):\/\/[a-z.]*\/\#\/([a-z]*)\/(.*)/g; 
+						var re = /(http|https):\/\/[a-z.]*\/\#!\/([a-z]*)\/(.*)/g; 
 						var m = re.exec(window.location.href);
 						if(!m){  
 							Ocf.PageLoader.push("#!/page/1","第1页");
@@ -279,7 +279,7 @@ Ocf.PageLoader = {
 						}
 				});
 				$("#next").click(function(){
-						var re = /(http|https):\/\/[a-z.]*\/\#\/([a-z]*)\/(.*)/g; 
+						var re = /(http|https):\/\/[a-z.]*\/\#!\/([a-z]*)\/(.*)/g; 
 						var m = re.exec(window.location.href);
 						if(!m){  
 							Ocf.PageLoader.push("#!/page/2","第2页");
