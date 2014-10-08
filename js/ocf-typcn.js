@@ -4,6 +4,12 @@ $.getScript( "https://cn.avoscloud.com/scripts/lib/av-0.4.3.min.js" )
 	AV.initialize(APPID, APPKEY); // Put your key here
 	console.log("AVOS Cloud init Success");
 	$( "#loading p" ).text( "连接成功，正在尝试读取信息，请稍后。" );
+	if($.ua.browser.name == "IE"){
+		window.onhashchange = onNavigate;
+		if($.ua.browser.major == "8" || $.ua.browser.major == "9"){
+			 $( "#loading p" ).text( "您的浏览器可能不受支持。建议更新至 IE11 或使用 Chrome 浏览器。" );
+		}
+	}
 	Ocf.init();
   })
   .fail(function( jqxhr, settings, exception ) {
