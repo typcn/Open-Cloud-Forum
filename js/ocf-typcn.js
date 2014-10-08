@@ -200,7 +200,7 @@ Ocf.PageLoader = {
 								
 								var postSub = data;
 								postSub = postSub.replace(/\{UserId\}/gi, object.get('user').id);
-								var dinfo = result.get('dinfo');
+								var dinfo = object.get('dinfo');
 								if(!dinfo) { dinfo = "unknow"; };
 								postSub = postSub.replace(/\{dinfo\}/gi, dinfo);
 								postSub = postSub.replace(/\{ObjId\}/gi, object.id);
