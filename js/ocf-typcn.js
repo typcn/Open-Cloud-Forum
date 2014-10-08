@@ -162,10 +162,13 @@ Ocf.PageLoader = {
 		post.get(aid).then(function(result) {
 				$.ajax({ 
 				  type : "GET", 
-				  url : "ajaxContents/single.html", 
+				  url : "ajaxContents/single.html?v=20141008", 
 				  async : false, 
 				  success : function(data){ 
-						data= data.replace(/\{UserId\}/gi, result.get('user').id);
+						data = data.replace(/\{UserId\}/gi, result.get('user').id);
+						var dinfo = result.get('dinfo');
+						if(!dinfo) { dinfo = "unknow"; };
+						data = data.replace(/\{dinfo\}/gi, dinfo);
 						data = data.replace(/\{ObjId\}/gi, result.id);
 						data = data.replace(/\{title\}/gi, result.get('title'));
 						var cont_enc = html_encode(result.get('body'));
@@ -189,7 +192,7 @@ Ocf.PageLoader = {
 					//place comments
 						$.ajax({ 
 						  type : "GET", 
-						  url : "ajaxContents/comment.html", 
+						  url : "ajaxContents/comment.html?v=20141008", 
 						  async : false, 
 						  success : function(data){ 
 							for (var i = 0; i < comments.length; i++) {
@@ -197,6 +200,9 @@ Ocf.PageLoader = {
 								
 								var postSub = data;
 								postSub = postSub.replace(/\{UserId\}/gi, object.get('user').id);
+								var dinfo = result.get('dinfo');
+								if(!dinfo) { dinfo = "unknow"; };
+								postSub = postSub.replace(/\{dinfo\}/gi, dinfo);
 								postSub = postSub.replace(/\{ObjId\}/gi, object.id);
 								postSub = postSub.replace(/\{date\}/gi, object.createdAt.format('yyyy-MM-dd hh:mm:ss'));
 								var cont_enc = html_encode(object.get('content'));
@@ -310,6 +316,7 @@ Ocf.Post = {
 		var post = new topic();
 		post.set("title",title);
 		post.set("body",content);
+		post.set("dinfo",$.ua.os.name + $.ua.os.version + " on " + $.ua.browser.name + $.ua.browser.major);
 		post.set("user",AV.User.current());
 		pACL = new AV.ACL(AV.User.current());
 		pACL.setPublicReadAccess(true);
@@ -336,6 +343,7 @@ Ocf.Post = {
 		var myreply = new reply();
 		myreply.set("content", content);
 		myreply.set("parent", post);
+		myreply.set("dinfo",$.ua.os.name + $.ua.os.version + " on " + $.ua.browser.name + $.ua.browser.major);
 		myreply.set("user", AV.User.current());
 		pACL = new AV.ACL(AV.User.current());
 		pACL.setPublicReadAccess(true);
