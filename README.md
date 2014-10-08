@@ -25,6 +25,14 @@ By [typcn](http://blog.eqoe.cn)
 
 Welcome to follow my [weibo](http://weibo.com/typcn)
 
+Thanks for
+-------------
+AVOS Cloud
+
+PageDown
+
+UA-parser
+
 Licenses : 
 -------------
 [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/)
