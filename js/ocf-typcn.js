@@ -316,7 +316,7 @@ Ocf.Post = {
 		var post = new topic();
 		post.set("title",title);
 		post.set("body",content);
-		post.set("dinfo",$.ua.os.name + $.ua.os.version + " on " + $.ua.browser.name + $.ua.browser.major);
+		post.set("dinfo",$.ua.os.name + $.ua.os.version + " - " + $.ua.browser.name + $.ua.browser.major);
 		post.set("user",AV.User.current());
 		pACL = new AV.ACL(AV.User.current());
 		pACL.setPublicReadAccess(true);
@@ -343,7 +343,7 @@ Ocf.Post = {
 		var myreply = new reply();
 		myreply.set("content", content);
 		myreply.set("parent", post);
-		myreply.set("dinfo",$.ua.os.name + $.ua.os.version + " on " + $.ua.browser.name + $.ua.browser.major);
+		myreply.set("dinfo",$.ua.os.name + $.ua.os.version + " - " + $.ua.browser.name + $.ua.browser.major);
 		myreply.set("user", AV.User.current());
 		pACL = new AV.ACL(AV.User.current());
 		pACL.setPublicReadAccess(true);
