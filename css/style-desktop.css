@@ -19,9 +19,9 @@
 		font-size: 1.5em;
 	}
 	
-	a.title
+	a.title,#singlepost header h2
 	{
-		font-size: 2.5em !important;
+		font-size: 1.5em !important;
 		letter-spacing: -0.015em !important;
 	}
 	

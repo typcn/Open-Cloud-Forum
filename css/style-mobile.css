@@ -20,9 +20,9 @@
 		font-size: 1.25em;
 	}
 
-	a.title
+	a.title,#singlepost header h2
 	{
-		font-size: 1.8em !important;
+		font-size: 1.3em !important;
 	}
 	/* Section/Article */
 
