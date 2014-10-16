@@ -1,3 +1,4 @@
+$.ajaxSetup({cache:true});
 //load AVOS Cloud Script
 $.getScript( "https://cn.avoscloud.com/scripts/lib/av-0.4.3.min.js" )
   .done(function( script, textStatus ) {
